@@ -1,0 +1,15 @@
+{
+	"singleAttributePerLine": false,
+	"useTabs": true,
+	"printWidth": 150,
+	"singleQuote": true,
+	"jsxSingleQuote": true,
+	"overrides": [
+		{
+			"files": ["**/*.css", "**/*.scss", "**/*.html"],
+			"options": {
+				"singleQuote": true
+			}
+		}
+	]
+}
