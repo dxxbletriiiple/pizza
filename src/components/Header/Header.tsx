@@ -1,6 +1,8 @@
+import { IHeader } from './Header.interface';
 import './Header.scss';
 import logo from '../../assets/pizza-logo.svg';
-export const Header = (): JSX.Element => {
+
+export const Header = ({ pizzaCount }: IHeader): JSX.Element => {
 	return (
 		<header className='header'>
 			<div className='container'>
@@ -12,7 +14,7 @@ export const Header = (): JSX.Element => {
 					</div>
 				</div>
 				<div className='header__cart'>
-					<a href='/cart.html' className='button button--cart'>
+					<a href='#!' className='button button--cart'>
 						<span>520 ₽</span>
 						<div className='button__delimiter'></div>
 						<svg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -38,7 +40,7 @@ export const Header = (): JSX.Element => {
 								strokeLinejoin='round'
 							/>
 						</svg>
-						<span>3</span>
+						<span>{pizzaCount}</span>
 					</a>
 				</div>
 			</div>

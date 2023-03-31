@@ -1,6 +1,7 @@
+import { IButton } from './Button.interface';
 import './Button.scss';
 
-export const Button = () => {
+export const Button = ({ handleClick }: IButton) => {
 	return (
 		<button className='button button--outline button--add'>
 			<svg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -9,7 +10,7 @@ export const Button = () => {
 					fill='white'
 				/>
 			</svg>
-			<span>Добавить</span>
+			<span onClick={handleClick}>Добавить</span>
 			<i>2</i>
 		</button>
 	);

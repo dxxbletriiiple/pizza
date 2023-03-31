@@ -2,7 +2,7 @@ import { IPizzaItem } from './PizzaItem.interface';
 import Button from '../Button';
 import './PizzaItem.scss';
 
-export const PizzaItem = ({ title, price }: IPizzaItem): JSX.Element => {
+export const PizzaItem = ({ title, price, handleClick }: IPizzaItem): JSX.Element => {
 	return (
 		<div className='pizza-block'>
 			<img
@@ -24,7 +24,7 @@ export const PizzaItem = ({ title, price }: IPizzaItem): JSX.Element => {
 			</div>
 			<div className='pizza-block__bottom'>
 				<div className='pizza-block__price'>от {price} ₽</div>
-				<Button />
+				<Button handleClick={handleClick} />
 			</div>
 		</div>
 	);
