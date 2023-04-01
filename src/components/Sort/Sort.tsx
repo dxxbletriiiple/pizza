@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import './Sort.scss';
 
 export const Sort = (): JSX.Element => {
+	const [isVisible, setIsVisible] = useState(false);
+
 	return (
 		<div className='sort'>
 			<div className='sort__label'>
@@ -11,15 +14,17 @@ export const Sort = (): JSX.Element => {
 					/>
 				</svg>
 				<b>Сортировка по:</b>
-				<span>популярности</span>
+				<span onClick={() => setIsVisible((prev) => !prev)}>популярности</span>
 			</div>
-			<div className='sort__popup'>
-				<ul>
-					<li className='active'>популярности</li>
-					<li>цене</li>
-					<li>алфавиту</li>
-				</ul>
-			</div>
+			{isVisible && (
+				<div className='sort__popup'>
+					<ul>
+						<li className='active'>популярности</li>
+						<li>цене</li>
+						<li>алфавиту</li>
+					</ul>
+				</div>
+			)}
 		</div>
 	);
 };
