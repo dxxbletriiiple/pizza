@@ -3,7 +3,12 @@ import './Sort.scss';
 
 export const Sort = (): JSX.Element => {
 	const [isVisible, setIsVisible] = useState(false);
-
+	const [selected, setSelected] = useState(0);
+	const list = ['популярности', 'цене', 'алфавиту'];
+	const handleClickOnSort = (i: number) => {
+		setSelected(i);
+		setIsVisible(false);
+	};
 	return (
 		<div className='sort'>
 			<div className='sort__label'>
@@ -14,14 +19,16 @@ export const Sort = (): JSX.Element => {
 					/>
 				</svg>
 				<b>Сортировка по:</b>
-				<span onClick={() => setIsVisible(!isVisible)}>популярности</span>
+				<span onClick={() => setIsVisible(!isVisible)}>{list[selected]}</span>
 			</div>
 			{isVisible && (
 				<div className='sort__popup'>
 					<ul>
-						<li className='active'>популярности</li>
-						<li>цене</li>
-						<li>алфавиту</li>
+						{list.map((el, i) => (
+							<li className={i === selected ? 'active' : ''} onClick={() => handleClickOnSort(i)} key={crypto.randomUUID()}>
+								{el}
+							</li>
+						))}
 					</ul>
 				</div>
 			)}
