@@ -1,25 +1,21 @@
 import { IPizzaItem } from './PizzaItem.interface';
 import Button from '../Button';
 import './PizzaItem.scss';
+import Selector from '../Selector';
 
-export const PizzaItem = ({ title, price, handleClick }: IPizzaItem): JSX.Element => {
+export const PizzaItem = ({ imageUrl, title, types, sizes, price, category, rating, handleClick }: IPizzaItem): JSX.Element => {
+	const typeNames: string[] = ['тонкое', 'традиционное'];
+
 	return (
 		<div className='pizza-block'>
-			<img
-				className='pizza-block__image'
-				src='https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg'
-				alt='Pizza'
-			/>
+			<img className='pizza-block__image' src={imageUrl} alt={title} />
 			<h4 className='pizza-block__title'>{title}</h4>
 			<div className='pizza-block__selector'>
 				<ul>
-					<li className='active'>тонкое</li>
-					<li>традиционное</li>
+					<Selector arr={typeNames} />
 				</ul>
 				<ul>
-					<li className='active'>26 см.</li>
-					<li>30 см.</li>
-					<li>40 см.</li>
+					<Selector arr={sizes} />
 				</ul>
 			</div>
 			<div className='pizza-block__bottom'>
