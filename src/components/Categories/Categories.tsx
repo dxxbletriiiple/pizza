@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Categories.scss';
 
-export const Categories = () => {
+export const Categories = (): JSX.Element => {
 	const categories: string[] = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 	const [categoryIndex, setCategoryIndex] = useState(0);
 

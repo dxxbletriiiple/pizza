@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ISelector } from './Selector.interface';
 
-export const Selector = ({ arr }: ISelector) => {
+export const Selector = ({ arr }: ISelector): JSX.Element => {
 	const [selectedIndex, setSelectedIndex] = useState(0);
 
 	const handleClick = (i: number) => {
