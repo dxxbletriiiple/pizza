@@ -9,7 +9,7 @@ export const Categories = () => {
 		<div className='categories'>
 			<ul>
 				{categories.map((el, i) => (
-					<li className={i === categoryIndex ? 'active' : ''} onClick={() => setCategoryIndex(i)}>
+					<li className={i === categoryIndex ? 'active' : ''} onClick={() => setCategoryIndex(i)} key={crypto.randomUUID()}>
 						{el}
 					</li>
 				))}
