@@ -5,10 +5,12 @@ export const Sort = (): JSX.Element => {
 	const [isVisible, setIsVisible] = useState(false);
 	const [selected, setSelected] = useState(0);
 	const list = ['популярности', 'цене', 'алфавиту'];
+
 	const handleClickOnSort = (i: number) => {
 		setSelected(i);
 		setIsVisible(false);
 	};
+
 	return (
 		<div className='sort'>
 			<div className='sort__label'>
