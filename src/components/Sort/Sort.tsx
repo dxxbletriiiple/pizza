@@ -14,7 +14,7 @@ export const Sort = (): JSX.Element => {
 					/>
 				</svg>
 				<b>Сортировка по:</b>
-				<span onClick={() => setIsVisible((prev) => !prev)}>популярности</span>
+				<span onClick={() => setIsVisible(!isVisible)}>популярности</span>
 			</div>
 			{isVisible && (
 				<div className='sort__popup'>
