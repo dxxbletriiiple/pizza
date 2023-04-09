@@ -5,9 +5,14 @@ import PizzaItem from '../PizzaItem';
 import Sort from '../Sort';
 import './App.scss';
 
+import { data } from '../../utils/data';
+
 export const App = () => {
+	const [pizzaArray, setPizzaArray] = useState(data);
 	const [pizzaCount, setPizzaCount] = useState(0);
+
 	const handleClick = () => {
+		console.log('qqq');
 		setPizzaCount(pizzaCount + 1);
 	};
 	return (
@@ -21,11 +26,9 @@ export const App = () => {
 					</div>
 					<h2 className='content__title'>Все пиццы</h2>
 					<div className='content__items'>
-						<PizzaItem title='qwqew' price={500} handleClick={handleClick} />
-						<PizzaItem title='qwqew' price={500} handleClick={handleClick} />
-						<PizzaItem title='qwqew' price={500} handleClick={handleClick} />
-						<PizzaItem title='qwqew' price={500} handleClick={handleClick} />
-						<PizzaItem title='qwqew' price={500} handleClick={handleClick} />
+						{pizzaArray.map((el) => (
+							<PizzaItem {...el} handleClick={handleClick} key={el.id} />
+						))}
 					</div>
 				</div>
 			</div>
