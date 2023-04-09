@@ -1,5 +1,4 @@
-export interface IPizzaItem {
-	title: string;
-	price: number;
+import { IPizza } from '../../interfaces';
+export interface IPizzaItem extends IPizza {
 	handleClick(): void;
 }
