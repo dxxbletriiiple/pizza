@@ -3,19 +3,28 @@ import Categories from '../Categories';
 import Header from '../Header';
 import PizzaItem from '../PizzaItem';
 import Sort from '../Sort';
+import Skeleton from '../Skeleton';
 import { GetPizza } from '../../services/GetPizza.service';
 import { IPizza } from '../../interfaces';
 import './App.scss';
-import Spinner from '../Spinner';
 
 const gp = new GetPizza();
 
 export const App = () => {
 	const [pizzaArray, setPizzaArray] = useState([]);
 	const [pizzaCount, setPizzaCount] = useState(0);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		gp.getPizza().then(setPizzaArray);
+		gp.getPizza()
+			.then((r) => {
+				setPizzaArray(r);
+				setIsLoading(false);
+			})
+			.catch((e) => {
+				console.error(e);
+				setIsLoading(true);
+			});
 	}, []);
 
 	const handleClick = () => {
@@ -31,15 +40,12 @@ export const App = () => {
 						<Sort />
 					</div>
 					<h2 className='content__title'>Все пиццы</h2>
-					{!pizzaArray[0] ? (
-						<Spinner />
-					) : (
-						<div className='content__items'>
-							{pizzaArray.map((el: IPizza) => (
-								<PizzaItem {...el} handleClick={handleClick} key={el.id} />
-							))}
-						</div>
-					)}
+
+					<div className='content__items'>
+						{isLoading
+							? [...new Array(6)].map((_) => <Skeleton key={crypto.randomUUID()} />)
+							: pizzaArray.map((el: IPizza) => <PizzaItem {...el} handleClick={handleClick} key={el.id} />)}
+					</div>
 				</div>
 			</div>
 		</div>
