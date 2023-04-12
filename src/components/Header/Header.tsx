@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { IHeader } from './Header.interface';
 import './Header.scss';
 import logo from '../../assets/pizza-logo.svg';
@@ -6,13 +7,15 @@ export const Header = ({ pizzaCount }: IHeader): JSX.Element => {
 	return (
 		<header className='header'>
 			<div className='container'>
-				<div className='header__logo'>
-					<img width='38' src={logo} alt='Pizza logo' />
-					<div>
-						<h1>React Pizza</h1>
-						<p>самая вкусная пицца во вселенной</p>
+				<Link to='/'>
+					<div className='header__logo'>
+						<img width='38' src={logo} alt='Pizza logo' />
+						<div>
+							<h1>React Pizza</h1>
+							<p>самая вкусная пицца во вселенной</p>
+						</div>
 					</div>
-				</div>
+				</Link>
 				<div className='header__cart'>
 					<a href='#!' className='button button--cart'>
 						<span>0 ₽</span>
