@@ -10,7 +10,7 @@ export const Selector = ({ arr }: ISelector): JSX.Element => {
 
 	return (
 		<ul>
-			{arr.map((el: number | string, i: number) => (
+			{arr?.map((el: number | string, i: number) => (
 				<li className={selectedIndex === i ? 'active' : ''} onClick={() => handleClick(i)} key={i}>
 					{el}
 				</li>
