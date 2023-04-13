@@ -14,7 +14,7 @@ export const Home = (): JSX.Element => {
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		gp.getPizza()
+		gp.fetchData()
 			.then((r) => {
 				setPizzaArray(r);
 				setIsLoading(false);
