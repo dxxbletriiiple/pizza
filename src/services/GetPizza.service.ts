@@ -3,7 +3,15 @@ export class GetPizza {
 	private ALL_PIZZAS = 'items';
 	private CATEGORIES = 'categories';
 
-	public fetchData = (rest: string = '') => {
-		return fetch(this.BASE_URL + this.ALL_PIZZAS + rest).then((r) => r.json());
+	public fetchData = (params: string) => {
+		return fetch(this.BASE_URL + params).then((r) => r.json());
+	};
+
+	public getAllPizzas = () => {
+		return this.fetchData(this.ALL_PIZZAS);
+	};
+
+	public getCategories = () => {
+		return this.fetchData(this.CATEGORIES);
 	};
 }
