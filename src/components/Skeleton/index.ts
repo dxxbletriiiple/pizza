@@ -1,3 +1,4 @@
-import { Skeleton } from './Skeleton';
+import { PizzaSkeleton } from './PizzaSkeleton';
+import { CategoriesSkeleton } from './CategoriesSkeleton';
 
-export default Skeleton;
+export { CategoriesSkeleton, PizzaSkeleton };
