@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { CategoriesSkeleton } from '../Skeleton';
 import { GetPizza } from '../../services/GetPizza.service';
-import './Categories.scss';
+import st from './Categories.module.scss';
 
 const gp = new GetPizza();
 
@@ -14,13 +14,13 @@ export const Categories = (): JSX.Element => {
 	}, []);
 
 	return (
-		<div className='categories'>
+		<div className={st.categories}>
 			{!categories[0] ? (
 				<CategoriesSkeleton />
 			) : (
 				<ul>
 					{categories.map((el, i) => (
-						<li className={i === categoryIndex ? 'active' : ''} onClick={() => setCategoryIndex(i)} key={crypto.randomUUID()}>
+						<li className={i === categoryIndex ? st.active : ''} onClick={() => setCategoryIndex(i)} key={crypto.randomUUID()}>
 							{el}
 						</li>
 					))}
