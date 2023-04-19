@@ -1,18 +1,24 @@
-import { useState } from 'react';
+import cn from 'classnames';
 import { ISelector } from './Selector.interface';
+import styles from './Selector.module.scss';
 
 export const Selector = ({ arr }: ISelector): JSX.Element => {
-	const [selectedIndex, setSelectedIndex] = useState(0);
-
 	const handleClick = (i: number) => {
-		setSelectedIndex(i);
+		//
 	};
 
 	return (
 		<ul>
-			{arr?.map((el: number | string, i: number) => (
-				<li className={selectedIndex === i ? 'active' : ''} onClick={() => handleClick(i)} key={i}>
-					{el}
+			{arr?.map((el: any, i: number) => (
+				<li
+					className={cn({
+						[styles.active]: el.selected,
+					})}
+					onClick={() => handleClick(i)}
+					key={i}
+				>
+					{el.type}
+					{el.size}
 				</li>
 			))}
 		</ul>

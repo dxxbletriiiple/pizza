@@ -1,3 +1,4 @@
 export interface ISelector {
-	arr: number[] | string[];
+	id: number | string;
+	arr: any[];
 }
