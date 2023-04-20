@@ -1,23 +1,42 @@
+import { IPizza } from './../interfaces/index';
 import { createSlice } from '@reduxjs/toolkit';
-import { IPizza } from '../interfaces';
 
 const initialState = {
 	pizzasArr: [],
 	cart: [],
+	activeCategory: 0,
 };
 
 export const counterSlice = createSlice({
 	name: 'pizzas',
 	initialState,
 	reducers: {
-		onAddToBasket: (state) => {
+		onLoad: (state, action) => {
+			state.pizzasArr = action.payload;
+		},
+		onAddToBasket: (state, action) => {
 			state.cart.push();
 		},
 		onRemoveFromBasket: (state, action) => {
 			state.cart = state.cart.filter((pizza: IPizza) => action.payload !== pizza.id);
 		},
+		onClearCart: (state) => {
+			state.cart = [];
+		},
+		onCahngeCategory: (state, action) => {
+			state.activeCategory = action.payload;
+		},
+		/*onChangePizzaType: (state, action) => {
+			state.pizzasArr = state.pizzasArr.map((p:IPizza) => {
+				if (p.id == action.payload) {
+					return {
+						p.
+					}
+				}
+			});
+		},*/
 	},
 });
 
-export const { onAddToBasket, onRemoveFromBasket } = counterSlice.actions;
+export const { onLoad, onAddToBasket, onRemoveFromBasket, onClearCart, onCahngeCategory } = counterSlice.actions;
 export default counterSlice.reducer;
