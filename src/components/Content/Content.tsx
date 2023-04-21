@@ -14,20 +14,29 @@ const gp = new GetPizza();
 export const Content = (): JSX.Element => {
 	const [pizzaCount, setPizzaCount] = useState(0);
 	const [isLoading, setIsLoading] = useState(true);
-	const pizzasArray = useSelector((state: IRootState) => state.pizzas.pizzasArr);
+	const { pizzasArr, activeCategory } = useSelector((state: IRootState) => state.pizzas);
 	const dispatch = useDispatch();
+
 	useEffect(() => {
-		gp.getAllPizzas()
-			.then((r) => {
+		setIsLoading(true);
+		if (activeCategory !== 0) {
+			gp.filterByCategories(activeCategory).then((r) => {
 				dispatch(onLoad(r));
 				setIsLoading(false);
-			})
-			.catch((e) => {
-				console.error(e);
-				setIsLoading(true);
 			});
-		//eslint-disable-next-line
-	}, []);
+		}
+		if (activeCategory === 0)
+			gp.getAllPizzas()
+				.then((r) => {
+					dispatch(onLoad(r));
+					setIsLoading(false);
+				})
+				.catch((err) => {
+					console.error(err);
+					setIsLoading(true);
+				});
+		// eslint-disable-next-line
+	}, [activeCategory]);
 
 	const handleClick = () => {
 		setPizzaCount(pizzaCount + 1);
@@ -43,7 +52,7 @@ export const Content = (): JSX.Element => {
 			<div className={st.items}>
 				{isLoading
 					? [...new Array(6)].map((_) => <PizzaSkeleton key={crypto.randomUUID()} />)
-					: pizzasArray.map((el: IPizza) => <PizzaItem {...el} handleClick={handleClick} key={el.id} />)}
+					: pizzasArr.map((el: IPizza) => <PizzaItem {...el} handleClick={handleClick} key={el.id} />)}
 			</div>
 		</>
 	);
