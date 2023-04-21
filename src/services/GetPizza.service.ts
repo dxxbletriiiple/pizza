@@ -11,6 +11,10 @@ export class GetPizza {
 		return this.fetchData(this.ALL_PIZZAS);
 	};
 
+	public filterByCategories = (n: number) => {
+		return this.fetchData(`${this.ALL_PIZZAS}?category=${n}`);
+	};
+
 	public getCategories = () => {
 		return this.fetchData(this.CATEGORIES);
 	};
