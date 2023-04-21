@@ -8,3 +8,10 @@ export interface IPizza {
 	category: number;
 	rating: number;
 }
+
+export interface IRootState {
+	pizzas: {
+		pizzasArr: any[];
+		activeCategory: number;
+	};
+}
