@@ -8,3 +8,9 @@
 	3. TypeScript
 	4. SCSS
 ```
+
+todo
+
+1. categories
+2. module scss
+3. cart
