@@ -13,5 +13,6 @@ export interface IRootState {
 	pizzas: {
 		pizzasArr: any[];
 		activeCategory: number;
+		order: string;
 	};
 }
