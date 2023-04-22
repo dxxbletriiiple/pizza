@@ -15,6 +15,10 @@ export class GetPizza {
 		return this.fetchData(`${this.ALL_PIZZAS}?category=${n}`);
 	};
 
+	public getSortedPizzas = (queryParams: string, orderBy: string) => {
+		return this.fetchData(`${this.ALL_PIZZAS}?sortBy=${queryParams}&${orderBy}`);
+	};
+
 	public getCategories = () => {
 		return this.fetchData(this.CATEGORIES);
 	};
