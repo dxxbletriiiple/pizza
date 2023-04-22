@@ -5,6 +5,8 @@ const initialState = {
 	pizzasArr: [],
 	cart: [],
 	activeCategory: 0,
+	order: 'asc',
+	sortBy: '',
 };
 
 export const counterSlice = createSlice({
@@ -14,17 +16,25 @@ export const counterSlice = createSlice({
 		onLoad: (state, action) => {
 			state.pizzasArr = action.payload;
 		},
+
 		onAddToBasket: (state, action) => {
 			state.cart.push();
 		},
+
 		onRemoveFromBasket: (state, action) => {
 			state.cart = state.cart.filter((pizza: IPizza) => action.payload !== pizza.id);
 		},
+
 		onClearCart: (state) => {
 			state.cart = [];
 		},
+
 		onCahngeCategory: (state, action) => {
 			state.activeCategory = action.payload;
+		},
+
+		onChangeOrder: (state, action) => {
+			state.order = action.payload;
 		},
 		/*onChangePizzaType: (state, action) => {
 			state.pizzasArr = state.pizzasArr.map((p:IPizza) => {
@@ -38,5 +48,5 @@ export const counterSlice = createSlice({
 	},
 });
 
-export const { onLoad, onAddToBasket, onRemoveFromBasket, onClearCart, onCahngeCategory } = counterSlice.actions;
+export const { onLoad, onAddToBasket, onRemoveFromBasket, onClearCart, onCahngeCategory, onChangeOrder } = counterSlice.actions;
 export default counterSlice.reducer;
