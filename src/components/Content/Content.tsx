@@ -19,22 +19,25 @@ export const Content = (): JSX.Element => {
 
 	useEffect(() => {
 		setIsLoading(true);
-		if (activeCategory !== 0) {
-			gp.filterByCategories(activeCategory).then((r) => {
-				dispatch(onLoad(r));
-				setIsLoading(false);
-			});
-		}
-		if (activeCategory === 0)
-			gp.getAllPizzas()
-				.then((r) => {
+		switch (activeCategory) {
+			case 0:
+				gp.getAllPizzas()
+					.then((r) => {
+						dispatch(onLoad(r));
+						setIsLoading(false);
+					})
+					.catch((err) => {
+						console.error(err);
+						setIsLoading(true);
+					});
+				break;
+			default:
+				gp.filterByCategories(activeCategory).then((r) => {
 					dispatch(onLoad(r));
 					setIsLoading(false);
-				})
-				.catch((err) => {
-					console.error(err);
-					setIsLoading(true);
 				});
+				break;
+		}
 		// eslint-disable-next-line
 	}, [activeCategory]);
 
