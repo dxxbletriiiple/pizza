@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import cn from 'classnames';
+import { useDispatch, useSelector } from 'react-redux';
+import { IRootState } from '../../interfaces';
 import { onChangeOrder } from '../../reducers';
 import st from './Sort.module.scss';
-import { useDispatch } from 'react-redux';
 
 export const Sort = (): JSX.Element => {
 	const [isVisible, setIsVisible] = useState(false);
 	const [selected, setSelected] = useState(0);
-	const [orderBy, setOrderBy] = useState(false);
 	const disp = useDispatch();
+	const order = useSelector((state: IRootState) => state.pizzas.order);
 
 	const list = ['популярности', 'цене', 'алфавиту'];
 
@@ -17,25 +17,18 @@ export const Sort = (): JSX.Element => {
 		setIsVisible(false);
 	};
 	const handleOrderChange = () => {
-		if (orderBy) {
-			disp(onChangeOrder('asc'));
+		switch (order) {
+			case 'asc':
+				return disp(onChangeOrder('desc'));
+			case 'desc':
+				return disp(onChangeOrder('asc'));
 		}
-		if (!orderBy) {
-			disp(onChangeOrder('desc'));
-		}
-		setOrderBy(!orderBy);
 	};
 
 	return (
 		<div className={st.sort}>
 			<div className={st.label}>
-				<b
-					className={cn({
-						[st.asc]: orderBy,
-						[st.desc]: !orderBy,
-					})}
-					onClick={handleOrderChange}
-				>
+				<b className={st[order]} onClick={handleOrderChange}>
 					Сортировка по:
 				</b>
 				<span onClick={() => setIsVisible(!isVisible)}>{list[selected]}</span>
