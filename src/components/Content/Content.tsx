@@ -14,14 +14,14 @@ const gp = new GetPizza();
 export const Content = (): JSX.Element => {
 	const [pizzaCount, setPizzaCount] = useState(0);
 	const [isLoading, setIsLoading] = useState(true);
-	const { pizzasArr, activeCategory } = useSelector((state: IRootState) => state.pizzas);
+	const { pizzasArr, activeCategory, sortBy, order } = useSelector((state: IRootState) => state.pizzas);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		setIsLoading(true);
 		switch (activeCategory) {
 			case 0:
-				gp.getAllPizzas()
+				gp.getAllPizzas(sortBy, order)
 					.then((r) => {
 						dispatch(onLoad(r));
 						setIsLoading(false);
@@ -32,14 +32,14 @@ export const Content = (): JSX.Element => {
 					});
 				break;
 			default:
-				gp.filterByCategories(activeCategory).then((r) => {
+				gp.getAllSortedPizzas(activeCategory, sortBy, order).then((r) => {
 					dispatch(onLoad(r));
 					setIsLoading(false);
 				});
 				break;
 		}
 		// eslint-disable-next-line
-	}, [activeCategory]);
+	}, [activeCategory, sortBy, order]);
 
 	const handleClick = () => {
 		setPizzaCount(pizzaCount + 1);
