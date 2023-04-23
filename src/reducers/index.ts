@@ -6,7 +6,7 @@ const initialState = {
 	cart: [],
 	activeCategory: 0,
 	order: 'asc',
-	sortBy: '',
+	sortBy: 'rating',
 };
 
 export const counterSlice = createSlice({
@@ -36,6 +36,9 @@ export const counterSlice = createSlice({
 		onChangeOrder: (state, action) => {
 			state.order = action.payload;
 		},
+		onChangeSort: (state, action) => {
+			state.sortBy = action.payload;
+		},
 		/*onChangePizzaType: (state, action) => {
 			state.pizzasArr = state.pizzasArr.map((p:IPizza) => {
 				if (p.id == action.payload) {
@@ -48,5 +51,5 @@ export const counterSlice = createSlice({
 	},
 });
 
-export const { onLoad, onAddToBasket, onRemoveFromBasket, onClearCart, onCahngeCategory, onChangeOrder } = counterSlice.actions;
+export const { onLoad, onAddToBasket, onRemoveFromBasket, onClearCart, onCahngeCategory, onChangeOrder, onChangeSort } = counterSlice.actions;
 export default counterSlice.reducer;
