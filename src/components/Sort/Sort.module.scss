@@ -41,6 +41,7 @@
 		color: $orange;
 		border-bottom: 1px dashed $orange;
 		cursor: pointer;
+		@include noselect();
 	}
 }
 
@@ -56,6 +57,7 @@
 	ul {
 		overflow: hidden;
 		li {
+			@include noselect();
 			padding: 12px 20px;
 			cursor: pointer;
 			&.active,
