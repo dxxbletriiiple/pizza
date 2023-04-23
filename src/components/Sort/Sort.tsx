@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IRootState } from '../../interfaces';
-import { onChangeOrder } from '../../reducers';
+import { onChangeOrder, onChangeSort } from '../../reducers';
 import st from './Sort.module.scss';
 
 export const Sort = (): JSX.Element => {
@@ -10,12 +10,18 @@ export const Sort = (): JSX.Element => {
 	const disp = useDispatch();
 	const order = useSelector((state: IRootState) => state.pizzas.order);
 
-	const list = ['популярности', 'цене', 'алфавиту'];
+	const list = [
+		{ name: 'популярности', sortBy: 'rating' },
+		{ name: 'цене', sortBy: 'price' },
+		{ name: 'алфавиту', sortBy: 'title' },
+	];
 
-	const handleClickOnSort = (i: number) => {
+	const handleClickOnSort = (sortBy: string, i: number) => {
+		disp(onChangeSort(sortBy));
 		setSelected(i);
 		setIsVisible(false);
 	};
+
 	const handleOrderChange = () => {
 		switch (order) {
 			case 'asc':
@@ -31,14 +37,14 @@ export const Sort = (): JSX.Element => {
 				<b className={st[order]} onClick={handleOrderChange}>
 					Сортировка по:
 				</b>
-				<span onClick={() => setIsVisible(!isVisible)}>{list[selected]}</span>
+				<span onClick={() => setIsVisible(!isVisible)}>{list[selected].name}</span>
 			</div>
 			{isVisible && (
 				<div className={st.popup}>
 					<ul>
 						{list.map((el, i) => (
-							<li className={i === selected ? st.active : ''} onClick={() => handleClickOnSort(i)} key={crypto.randomUUID()}>
-								{el}
+							<li className={i === selected ? st.active : ''} onClick={() => handleClickOnSort(el.sortBy, i)} key={crypto.randomUUID()}>
+								{el.name}
 							</li>
 						))}
 					</ul>
