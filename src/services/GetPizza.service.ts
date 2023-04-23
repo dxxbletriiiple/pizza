@@ -7,16 +7,12 @@ export class GetPizza {
 		return fetch(this.BASE_URL + params).then((r) => r.json());
 	};
 
-	public getAllPizzas = () => {
-		return this.fetchData(this.ALL_PIZZAS);
+	public getAllPizzas = (sortBy: string, order: string) => {
+		return this.fetchData(this.ALL_PIZZAS + `?sortBy=${sortBy}&order=${order}`);
 	};
 
-	public filterByCategories = (n: number) => {
-		return this.fetchData(`${this.ALL_PIZZAS}?category=${n}`);
-	};
-
-	public getSortedPizzas = (queryParams: string, orderBy: string) => {
-		return this.fetchData(`${this.ALL_PIZZAS}?sortBy=${queryParams}&${orderBy}`);
+	public getAllSortedPizzas = (category: number, sortBy: string, order: string) => {
+		return this.fetchData(`${this.ALL_PIZZAS}?category=${category}&sortBy=${sortBy}&order=${order}`);
 	};
 
 	public getCategories = () => {
