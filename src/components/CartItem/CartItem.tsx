@@ -15,7 +15,7 @@ export const CartItem = ({ imageUrl, title, price, count, types, sizes }: ICartI
 			<div className='cart__item-info'>
 				<h3>{title}</h3>
 				<p>
-					{types}, {sizes} см.
+					{types[0].type}, {sizes[0].size} см.
 				</p>
 			</div>
 			<div className='cart__item-count'>
