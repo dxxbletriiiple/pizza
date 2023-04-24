@@ -39,17 +39,60 @@ export const counterSlice = createSlice({
 		onChangeSort: (state, action) => {
 			state.sortBy = action.payload;
 		},
-		/*onChangePizzaType: (state, action) => {
-			state.pizzasArr = state.pizzasArr.map((p:IPizza) => {
-				if (p.id == action.payload) {
+		onChangePizzaSize: (state, action) => {
+			//@ts-ignore
+			state.pizzasArr = state.pizzasArr.map((p: IPizza) => {
+				if (action.payload.id === p.id) {
+					const sizes = p.sizes.map((el) => {
+						if (el.size === action.payload.el.size) {
+							return { selected: true, size: el.size };
+						}
+						return {
+							...el,
+							selected: false,
+						};
+					});
 					return {
-						p.
-					}
+						...p,
+						sizes,
+					};
 				}
+				return p;
 			});
-		},*/
+		},
+		onChangePizzaType: (state, action) => {
+			//@ts-ignore
+			state.pizzasArr = state.pizzasArr.map((p: IPizza) => {
+				if (action.payload.id === p.id) {
+					const types = p.types.map((el) => {
+						if (el.type === action.payload.el.type) {
+							return { selected: true, type: el.type };
+						}
+						return {
+							...el,
+							selected: false,
+						};
+					});
+					return {
+						...p,
+						types,
+					};
+				}
+				return p;
+			});
+		},
 	},
 });
 
-export const { onLoad, onAddToBasket, onRemoveFromBasket, onClearCart, onCahngeCategory, onChangeOrder, onChangeSort } = counterSlice.actions;
+export const {
+	onLoad,
+	onAddToBasket,
+	onRemoveFromBasket,
+	onClearCart,
+	onCahngeCategory,
+	onChangeOrder,
+	onChangeSort,
+	onChangePizzaSize,
+	onChangePizzaType,
+} = counterSlice.actions;
 export default counterSlice.reducer;
