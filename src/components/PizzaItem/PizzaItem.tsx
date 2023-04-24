@@ -10,10 +10,10 @@ export const PizzaItem = ({ id, imageUrl, title, types, sizes, price, category, 
 			<h4 className={styles.title}>{title}</h4>
 			<div className={styles.selector}>
 				<ul>
-					<Selector id={id} arr={types} />
+					<Selector type='types' id={id} arr={types} />
 				</ul>
 				<ul>
-					<Selector id={id} arr={sizes} />
+					<Selector type='sizes' id={id} arr={sizes} />
 				</ul>
 			</div>
 			<div className={styles.bottom}>
