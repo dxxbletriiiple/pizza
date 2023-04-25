@@ -1,16 +1,15 @@
-.cart__item {
-	&-img {
-	}
-}
+@import '../Button/Button.module.scss';
 
-&__item {
+.item {
 	display: flex;
 	width: 100%;
 	border-top: 1px solid $gray-line;
 	padding-top: 30px;
 	margin-top: 30px;
-
-	&-img {
+	.image {
+		width: 260px;
+	}
+	.img {
 		display: flex;
 		align-items: center;
 		margin-right: 15px;
@@ -22,7 +21,7 @@
 		}
 	}
 
-	&-info {
+	.info {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -41,13 +40,13 @@
 		}
 	}
 
-	&-count {
+	.count {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		width: 13%;
 
-		&-minus {
+		.minus {
 			svg {
 				path:first-of-type {
 					display: none;
@@ -81,7 +80,7 @@
 		}
 	}
 
-	&-price {
+	.price {
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -94,7 +93,7 @@
 		}
 	}
 
-	&-remove {
+	.remove {
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;

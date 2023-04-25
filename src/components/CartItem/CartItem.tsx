@@ -1,25 +1,21 @@
-import { IPizza } from '../../interfaces';
-import styles from './CartItem.module.scss';
+import cn from 'classnames';
+import { ICartPizza } from '../../interfaces';
+import st from './CartItem.module.scss';
 
-interface ICartItem extends Pick<IPizza, 'imageUrl' | 'title' | 'price' | 'types' | 'sizes'> {
-	count: number;
-}
-
-export const CartItem = ({ imageUrl, title, price, count, types, sizes }: ICartItem) => {
-	console.log(styles.cart__item_img);
+export const CartItem = ({ imageUrl, title, price, count, type, size }: ICartPizza) => {
 	return (
-		<div className={styles.cart__item}>
-			<div className={styles.cart__item_img}>
-				<img className='pizza-block__image' src={imageUrl} alt={title} />
+		<div className={st.item}>
+			<div className={st.img}>
+				<img className={st.image} src={imageUrl} alt={title} />
 			</div>
-			<div className='cart__item-info'>
+			<div className={st.info}>
 				<h3>{title}</h3>
 				<p>
-					{types[0].type}, {sizes[0].size} см.
+					{type}, {size} см.
 				</p>
 			</div>
-			<div className='cart__item-count'>
-				<div className='button button--outline button--circle cart__item-count-minus'>
+			<div className={st.count}>
+				<div className={cn(st.button, st.outline, st.circle, st.minus)}>
 					<svg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'>
 						<path
 							d='M5.92001 3.84V5.76V8.64C5.92001 9.17016 5.49017 9.6 4.96001 9.6C4.42985 9.6 4.00001 9.17016 4.00001 8.64L4 5.76L4.00001 3.84V0.96C4.00001 0.42984 4.42985 0 4.96001 0C5.49017 0 5.92001 0.42984 5.92001 0.96V3.84Z'
@@ -32,7 +28,7 @@ export const CartItem = ({ imageUrl, title, price, count, types, sizes }: ICartI
 					</svg>
 				</div>
 				<b>{count}</b>
-				<div className='button button--outline button--circle cart__item-count-plus'>
+				<div className={cn(st.button, st.outline, st.circle, st.plus)}>
 					<svg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'>
 						<path
 							d='M5.92001 3.84V5.76V8.64C5.92001 9.17016 5.49017 9.6 4.96001 9.6C4.42985 9.6 4.00001 9.17016 4.00001 8.64L4 5.76L4.00001 3.84V0.96C4.00001 0.42984 4.42985 0 4.96001 0C5.49017 0 5.92001 0.42984 5.92001 0.96V3.84Z'
@@ -45,11 +41,11 @@ export const CartItem = ({ imageUrl, title, price, count, types, sizes }: ICartI
 					</svg>
 				</div>
 			</div>
-			<div className='cart__item-price'>
-				<b>{price * count} ₽</b>
+			<div className={st.price}>
+				<b>{price} ₽</b>
 			</div>
-			<div className='cart__item-remove'>
-				<div className='button button--outline button--circle'>
+			<div className={st.remove}>
+				<div className={cn(st.button, st.outline, st.circle)}>
 					<svg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'>
 						<path
 							d='M5.92001 3.84V5.76V8.64C5.92001 9.17016 5.49017 9.6 4.96001 9.6C4.42985 9.6 4.00001 9.17016 4.00001 8.64L4 5.76L4.00001 3.84V0.96C4.00001 0.42984 4.42985 0 4.96001 0C5.49017 0 5.92001 0.42984 5.92001 0.96V3.84Z'
