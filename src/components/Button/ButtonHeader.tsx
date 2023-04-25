@@ -1,10 +1,15 @@
+import { useSelector } from 'react-redux';
 import cn from 'classnames';
 import styles from './Button.module.scss';
+import { IRootState } from '../../interfaces';
 
 const ButtonHeader = () => {
+	const cart = useSelector((state: IRootState) => state.pizzas.cart);
+	const totalPrice = cart.reduce((acc, curr) => acc + curr.price, 0);
+	const count = cart.length;
 	return (
 		<button className={cn(styles.button, styles.cart)}>
-			<span>0 ₽</span>
+			<span>{totalPrice} ₽</span>
 			<div className={styles.delimiter}></div>
 			<svg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'>
 				<path
@@ -29,7 +34,7 @@ const ButtonHeader = () => {
 					strokeLinejoin='round'
 				/>
 			</svg>
-			<span>{0}</span>
+			<span>{count}</span>
 		</button>
 	);
 };
