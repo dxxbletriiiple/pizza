@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { onLoad } from '../../reducers';
 import { GetPizza } from '../../services/GetPizza.service';
-import { IPizza, IRootState } from '../../interfaces';
+import { IPizza, IUseSelector } from '../../interfaces';
 import Categories from '../Categories';
 import PizzaItem from '../PizzaItem';
 import Sort from '../Sort';
@@ -14,7 +14,7 @@ const gp = new GetPizza();
 export const Content = (): JSX.Element => {
 	const [pizzaCount, setPizzaCount] = useState(0);
 	const [isLoading, setIsLoading] = useState(true);
-	const { pizzasArr, activeCategory, sortBy, order } = useSelector((state: IRootState) => state.pizzas);
+	const { pizzasArr, activeCategory, sortBy, order } = useSelector((state: IUseSelector) => state.pizzas);
 	const dispatch = useDispatch();
 
 	useEffect(() => {

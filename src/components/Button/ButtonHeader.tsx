@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
 import cn from 'classnames';
 import styles from './Button.module.scss';
-import { IRootState } from '../../interfaces';
+import { IUseSelector } from '../../interfaces';
 
 const ButtonHeader = () => {
-	const cart = useSelector((state: IRootState) => state.pizzas.cart);
+	const cart = useSelector((state: IUseSelector) => state.pizzas.cart);
 	const totalPrice = cart.reduce((acc, curr) => acc + curr.price, 0);
 	const count = cart.length;
 	return (

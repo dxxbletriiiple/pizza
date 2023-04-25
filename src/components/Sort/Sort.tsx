@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IRootState } from '../../interfaces';
+import { IUseSelector } from '../../interfaces';
 import { onChangeOrder, onChangeSort } from '../../reducers';
 import st from './Sort.module.scss';
 
@@ -8,7 +8,7 @@ export const Sort = (): JSX.Element => {
 	const [isVisible, setIsVisible] = useState(false);
 	const [selected, setSelected] = useState(0);
 	const disp = useDispatch();
-	const order = useSelector((state: IRootState) => state.pizzas.order);
+	const order = useSelector((state: IUseSelector) => state.pizzas.order);
 
 	const list = [
 		{ name: 'популярности', sortBy: 'rating' },

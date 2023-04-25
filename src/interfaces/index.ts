@@ -16,11 +16,12 @@ export interface IPizza {
 }
 
 export interface IRootState {
-	pizzas: {
-		pizzasArr: any[];
-		activeCategory: number;
-		sortBy: string;
-		order: string;
-		cart: IPizza[];
-	};
+	pizzasArr: any[];
+	activeCategory: number;
+	sortBy: string;
+	order: string;
+	cart: IPizza[];
+}
+export interface IUseSelector {
+	pizzas: IRootState;
 }
