@@ -1,3 +1,3 @@
 export interface IButton {
-	handleClick(): void;
+	handleAddToCart(): void;
 }

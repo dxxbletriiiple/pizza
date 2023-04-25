@@ -1,7 +1,7 @@
-import { IPizza } from './../interfaces/index';
+import { IPizza, IRootState } from './../interfaces/index';
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+const initialState: IRootState = {
 	pizzasArr: [],
 	cart: [],
 	activeCategory: 0,
@@ -18,7 +18,7 @@ export const counterSlice = createSlice({
 		},
 
 		onAddToBasket: (state, action) => {
-			state.cart.push();
+			state.cart.push(action.payload);
 		},
 
 		onRemoveFromBasket: (state, action) => {
