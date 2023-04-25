@@ -1,10 +1,15 @@
-//import CartItem from '../CartItem';
+import CartItem from '../CartItem';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 import ButtonBack from '../Button/ButtonBack';
 import st from './Cart.module.scss';
+import { useSelector } from 'react-redux';
+import { IUseSelector } from '../../interfaces';
 
 export const Cart = () => {
+	const cart = useSelector((state: IUseSelector) => state.pizzas.cart);
+	const totalPrice = cart.reduce((acc, curr) => acc + curr.price, 0);
+	const count = cart.length;
 	return (
 		<div className={cn(st.container, st.cart_container)}>
 			<div className={st.cart}>
@@ -52,14 +57,18 @@ export const Cart = () => {
 						<span>Очистить корзину</span>
 					</div>
 				</div>
-				<div className={st.items}>{/*<CartItem />*/}</div>
+				<div className={st.items}>
+					{cart.map((p) => (
+						<CartItem {...p} key={crypto.randomUUID()} />
+					))}
+				</div>
 				<div className={st.bottom}>
 					<div className={st.details}>
 						<span>
-							Всего пицц: <b>3 шт.</b>
+							Всего пицц: <b>{count} шт.</b>
 						</span>
 						<span>
-							Сумма заказа: <b>900 ₽</b>
+							Сумма заказа: <b>{totalPrice} ₽</b>
 						</span>
 					</div>
 					<div className={st.buttons}>

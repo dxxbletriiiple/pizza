@@ -15,12 +15,17 @@ export interface IPizza {
 	rating: number;
 }
 
+export interface ICartPizza extends Pick<IPizza, 'id' | 'imageUrl' | 'title' | 'price'> {
+	count: number;
+	size: number;
+	type: string;
+}
 export interface IRootState {
 	pizzasArr: any[];
 	activeCategory: number;
 	sortBy: string;
 	order: string;
-	cart: IPizza[];
+	cart: ICartPizza[];
 }
 export interface IUseSelector {
 	pizzas: IRootState;
