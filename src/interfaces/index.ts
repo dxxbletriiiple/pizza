@@ -21,5 +21,6 @@ export interface IRootState {
 		activeCategory: number;
 		sortBy: string;
 		order: string;
+		cart: IPizza[];
 	};
 }
