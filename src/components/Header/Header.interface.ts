@@ -1,3 +1,1 @@
-export interface IHeader {
-	pizzaCount: number;
-}
+export interface IHeader {}

@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom';
-import { IHeader } from './Header.interface';
 import styles from './Header.module.scss';
 import logo from '../../assets/pizza-logo.svg';
 import ButtonHeader from '../Button/ButtonHeader';
 
-export const Header = ({ pizzaCount }: IHeader): JSX.Element => {
+export const Header = (): JSX.Element => {
 	return (
 		<header className={styles.header}>
 			<div className={styles.container}>
