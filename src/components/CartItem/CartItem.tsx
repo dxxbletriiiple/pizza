@@ -1,8 +1,12 @@
 import cn from 'classnames';
 import { ICartPizza } from '../../interfaces';
 import st from './CartItem.module.scss';
+import { useDispatch } from 'react-redux';
+import { onAddMorePizza } from '../../reducers';
 
-export const CartItem = ({ imageUrl, title, price, count, type, size }: ICartPizza) => {
+export const CartItem = ({ id, imageUrl, title, price, count, type, size }: ICartPizza) => {
+	const ds = useDispatch();
+
 	return (
 		<div className={st.item}>
 			<div className={st.img}>
@@ -28,7 +32,7 @@ export const CartItem = ({ imageUrl, title, price, count, type, size }: ICartPiz
 					</svg>
 				</div>
 				<b>{count}</b>
-				<div className={cn(st.button, st.outline, st.circle, st.plus)}>
+				<div className={cn(st.button, st.outline, st.circle, st.plus)} onClick={() => ds(onAddMorePizza(id))}>
 					<svg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'>
 						<path
 							d='M5.92001 3.84V5.76V8.64C5.92001 9.17016 5.49017 9.6 4.96001 9.6C4.42985 9.6 4.00001 9.17016 4.00001 8.64L4 5.76L4.00001 3.84V0.96C4.00001 0.42984 4.42985 0 4.96001 0C5.49017 0 5.92001 0.42984 5.92001 0.96V3.84Z'
@@ -42,7 +46,7 @@ export const CartItem = ({ imageUrl, title, price, count, type, size }: ICartPiz
 				</div>
 			</div>
 			<div className={st.price}>
-				<b>{price} ₽</b>
+				<b>{price * count} ₽</b>
 			</div>
 			<div className={st.remove}>
 				<div className={cn(st.button, st.outline, st.circle)}>

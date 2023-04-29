@@ -1,15 +1,17 @@
-import CartItem from '../CartItem';
-import cn from 'classnames';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { IUseSelector } from '../../interfaces';
+import { onClearCart } from '../../reducers';
+import cn from 'classnames';
+import CartItem from '../CartItem';
 import ButtonBack from '../Button/ButtonBack';
 import st from './Cart.module.scss';
-import { useSelector } from 'react-redux';
-import { IUseSelector } from '../../interfaces';
 
 export const Cart = () => {
+	const ds = useDispatch();
 	const cart = useSelector((state: IUseSelector) => state.pizzas.cart);
-	const totalPrice = cart.reduce((acc, curr) => acc + curr.price, 0);
-	const count = cart.length;
+	const totalPrice = cart.reduce((acc, curr) => acc + curr.price * curr.count, 0);
+	const count = cart.reduce((acc, curr) => acc + curr.count, 0);
 	return (
 		<div className={cn(st.container, st.cart_container)}>
 			<div className={st.cart}>
@@ -40,7 +42,7 @@ export const Cart = () => {
 						</svg>
 						Корзина
 					</h2>
-					<div className={st.clear}>
+					<div className={st.clear} onClick={() => ds(onClearCart())}>
 						<svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
 							<path d='M2.5 5H4.16667H17.5' stroke='#B6B6B6' strokeWidth='1.2' strokeLinecap='round' strokeLinejoin='round' />
 							<path
@@ -75,9 +77,9 @@ export const Cart = () => {
 						<Link to='/'>
 							<ButtonBack />
 						</Link>
-						<div className={st.pay}>
+						<button className={cn(st.pay)}>
 							<span>Оплатить сейчас</span>
-						</div>
+						</button>
 					</div>
 				</div>
 			</div>

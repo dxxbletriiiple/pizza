@@ -5,7 +5,7 @@ import { IUseSelector } from '../../interfaces';
 
 const ButtonHeader = () => {
 	const cart = useSelector((state: IUseSelector) => state.pizzas.cart);
-	const totalPrice = cart.reduce((acc, curr) => acc + curr.price, 0);
+	const totalPrice = cart.reduce((acc, curr) => acc + curr.price * curr.count, 0);
 	const count = cart.length;
 	return (
 		<button className={cn(styles.button, styles.cart)}>

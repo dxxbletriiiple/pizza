@@ -16,7 +16,8 @@ export const PizzaItem = ({ id, imageUrl, title, types, sizes, price, category, 
 			title,
 			price,
 			size: sizes.filter((el) => el.selected)[0].size,
-			type: types.filter((el) => el.selected)[0].type
+			type: types.filter((el) => el.selected)[0].type,
+			count:1
 		};
 		ds(onAddToBasket(pizza));
 	};
