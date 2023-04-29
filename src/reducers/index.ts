@@ -20,7 +20,9 @@ export const counterSlice = createSlice({
 		onAddToBasket: (state, action) => {
 			state.cart.push(action.payload);
 		},
-
+		onAddMorePizza: (state, action) => {
+			state.cart = state.cart.map((el) => (el.id === action.payload ? { ...el, count: el.count + 1 } : el));
+		},
 		onRemoveFromBasket: (state, action) => {
 			state.cart = state.cart.filter((pizza: ICartPizza) => action.payload !== pizza.id);
 		},
@@ -87,6 +89,7 @@ export const counterSlice = createSlice({
 export const {
 	onLoad,
 	onAddToBasket,
+	onAddMorePizza,
 	onRemoveFromBasket,
 	onClearCart,
 	onCahngeCategory,
